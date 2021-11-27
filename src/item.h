@@ -449,9 +449,7 @@ class ItemAttributes
 		template<typename R>
 		void setCustomAttribute(std::string& key, R value) {
 			toLowerCaseString(key);
-			if (hasAttribute(ITEM_ATTRIBUTE_CUSTOM)) {
-				removeCustomAttribute(key);
-			} else {
+			if (!hasAttribute(ITEM_ATTRIBUTE_CUSTOM)) {
 				getAttr(ITEM_ATTRIBUTE_CUSTOM).value.custom = new CustomAttributeMap();
 			}
 			getAttr(ITEM_ATTRIBUTE_CUSTOM).value.custom->emplace(key, value);
@@ -459,9 +457,7 @@ class ItemAttributes
 
 		void setCustomAttribute(std::string& key, CustomAttribute& value) {
 			toLowerCaseString(key);
-			if (hasAttribute(ITEM_ATTRIBUTE_CUSTOM)) {
-				removeCustomAttribute(key);
-			} else {
+			if (!hasAttribute(ITEM_ATTRIBUTE_CUSTOM)) {
 				getAttr(ITEM_ATTRIBUTE_CUSTOM).value.custom = new CustomAttributeMap();
 			}
 			getAttr(ITEM_ATTRIBUTE_CUSTOM).value.custom->insert(std::make_pair(std::move(key), std::move(value)));
